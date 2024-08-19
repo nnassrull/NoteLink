@@ -1,0 +1,7 @@
+POST http://localhost:3500/tasks
+content-type: application/json
+
+{
+    "title": "Nasrul Huda",
+    "content": "I am 22 years old"
+}
