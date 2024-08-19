@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-const Sidebar = ({ tasks, onSelectedTask }) => {
+const Sidebar = ({ tasks, onSelectedTask, onDeleteTask }) => {
   const [selectedIndex, setSelectedIndex] = useState(tasks.length - 1);
 
   const handleClick = (task, index) => {
@@ -18,7 +20,14 @@ const Sidebar = ({ tasks, onSelectedTask }) => {
             className={`task ${i === selectedIndex ? "selected" : ""}`}
             onClick={() => handleClick(task, i)}
           >
-            <p>{task.Title}</p>
+            <p>
+              <p>{task.Title}</p> <br /> Lorem ipsum dolor sit amet consectetur
+            </p>
+            <FontAwesomeIcon
+              className="icons"
+              icon={faTrashCan}
+              onClick={() => onDeleteTask(task.ID)}
+            />
           </li>
         ))}
       </ul>

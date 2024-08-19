@@ -1,6 +1,6 @@
 package models
 
-import "example.com/ToDoList/db"
+import "example.com/back-end/db"
 
 type Task struct {
 	ID int64
@@ -58,4 +58,33 @@ func GetallTasks() ([]Task, error) {
 	}
 
 	return tasks, nil	
+}
+
+func GetTaskByID(id int64) (*Task, error) {
+	query := "SELECT * FROM tasks WHERE id = ?"
+	row := db.DB.QueryRow(query, id)
+
+	var task Task 
+	err := row.Scan(&task.ID, &task.Title, &task.Content)
+	
+	if err != nil {
+		return nil, err
+	}
+
+	return &task, nil
+}
+
+func (task Task) Delete() error {
+    query := "DELETE FROM tasks WHERE id = ?"
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(task.ID)
+	return err
 }

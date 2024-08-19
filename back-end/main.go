@@ -1,8 +1,8 @@
 package main
 
 import (
-	"example.com/ToDoList/db"
-	"example.com/ToDoList/routes"
+	"example.com/back-end/db"
+	"example.com/back-end/routes"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

@@ -37,10 +37,25 @@ function App() {
     }
   };
 
+  const handleDeleteTask = async (taskID) => {
+    try {
+      const response = await axios.delete(`/tasks/${taskID}`);
+      console.log("Task deleted: ", response.data);
+      fetchTasks();
+    } catch (err) {
+      console.error("Error deleting the task: ", err);
+    }
+  };
+
   return (
     <div className="App">
       <Navbar onCreateTask={handleCreateTask} />
-      <MainContainer tasks={tasks} error={error} loading={loading} />
+      <MainContainer
+        tasks={tasks}
+        error={error}
+        loading={loading}
+        onDeleteTask={handleDeleteTask}
+      />
     </div>
   );
 }

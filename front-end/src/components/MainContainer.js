@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import TaskContent from "./TaskContent";
 
-const MainContainer = ({ tasks, error, loading }) => {
+const MainContainer = ({ tasks, error, loading, onDeleteTask }) => {
   const [selectedTask, setSelectedTask] = useState(null); // State to store the selected task content
 
   useEffect(() => {
@@ -28,7 +28,11 @@ const MainContainer = ({ tasks, error, loading }) => {
 
   return (
     <div className="main">
-      <Sidebar tasks={tasks} onSelectedTask={handleSelected} />
+      <Sidebar
+        tasks={tasks}
+        onSelectedTask={handleSelected}
+        onDeleteTask={onDeleteTask}
+      />
       <TaskContent taskContent={selectedTask.Content} />
     </div>
   );

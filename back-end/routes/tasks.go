@@ -2,8 +2,9 @@ package routes
 
 import (
 	"net/http"
+	"strconv"
 
-	"example.com/ToDoList/models"
+	"example.com/back-end/models"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,3 +35,27 @@ func createTasks(context *gin.Context) {
 
 	context.JSON(http.StatusCreated, gin.H{"message": "task created successfully", "task": task})
 }
+
+func deleteTask(context *gin.Context) {
+	taskID, err := strconv.ParseInt(context.Param("id"),10, 64)
+  
+	if err != nil {
+	  context.JSON(http.StatusBadRequest, gin.H{"message": "Could not parse task id"})
+	  return
+	}
+  
+	task, err := models.GetTaskByID(taskID)
+  
+	if err != nil {
+	  context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch the task by id"})
+	  return
+	}
+  
+	err = task.Delete()
+  
+	if err != nil {
+	  context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not delete the task"})
+	}
+  
+	context.JSON(http.StatusOK, gin.H{"message": "task deleted"})
+  }
