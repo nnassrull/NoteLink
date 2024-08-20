@@ -17,14 +17,15 @@ const Sidebar = ({ tasks, onSelectedTask, onDeleteTask }) => {
           <li
             key={i}
             id={i === selectedIndex ? "selected" : ""}
-            className={`task ${i === selectedIndex ? "selected" : ""}`}
+            className={`task ${i === selectedIndex ? "task-selected" : ""}`}
             onClick={() => handleClick(task, i)}
           >
             <p>
-              <p>{task.Title}</p> <br /> Lorem ipsum dolor sit amet consectetur
+              <p style={{ fontWeight: "bolder" }}>{task.Title}</p> Lorem ipsum
+              dolor sit amet consectetur
             </p>
             <FontAwesomeIcon
-              className="icons"
+              id={`${i === selectedIndex ? "icon-selected" : "icon-disabled"}`}
               icon={faTrashCan}
               onClick={() => onDeleteTask(task.ID)}
             />

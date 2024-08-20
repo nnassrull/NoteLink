@@ -1,6 +1,8 @@
 package models
 
-import "example.com/back-end/db"
+import (
+	"example.com/back-end/db"
+)
 
 type Task struct {
 	ID int64
@@ -91,7 +93,7 @@ func (task Task) Delete() error {
 
 func (task Task) Update() error {
 	query := `
-	UPDATE events 
+	UPDATE tasks 
 	SET title = ?, content = ?
 	WHERE id = ?
 	`
@@ -105,5 +107,6 @@ func (task Task) Update() error {
 	defer stmt.Close()
 
 	_, err = stmt.Exec(task.Title, task.Content, task.ID)
+
 	return err
 }

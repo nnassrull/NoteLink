@@ -65,7 +65,7 @@ func deleteTask(context *gin.Context) {
     taskID, err := strconv.ParseInt(context.Param("id"), 10, 64)
 
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse event id"})
+		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse task id"})
 		return
 	}
     
@@ -74,7 +74,7 @@ func deleteTask(context *gin.Context) {
 	err = context.ShouldBindJSON(&updatedTask)
 
 	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "could not fetch event"})
+		context.JSON(http.StatusBadRequest, gin.H{"message": "could not fetch task"})
 		return
 	}
 
@@ -82,7 +82,7 @@ func deleteTask(context *gin.Context) {
 	err = updatedTask.Update()
 
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not update given event"})
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "could not update task"})
 		return
 	}
 

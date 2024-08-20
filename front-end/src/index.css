@@ -1,13 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700;800&display=swap");
+
 :root {
-  --text-color: #333;
+  --text-color: #323233;
   --selected: #cacaca;
   --hover: #e8e9ea;
+  --selected-yellow: #ecbb01;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Nunito", serif;
 }
 
 body {
@@ -56,7 +60,7 @@ body {
   flex-direction: column;
   height: 96vh;
   border: 1px solid #e0e0e0;
-  width: 25%;
+  width: 280px;
   margin-top: 0;
 }
 
@@ -66,7 +70,9 @@ body {
 }
 
 #selected {
-  background-color: var(--selected);
+  background-color: var(--selected-yellow);
+  color: white;
+  border: none;
 }
 
 .task {
@@ -94,9 +100,15 @@ body {
 
 .task-content-textarea {
   margin: 2%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  font-size: larger;
+  font-size: large;
+  font-weight: 250;
+  outline: none;
+}
+
+.task-title-textarea {
+  margin-top: 2%;
+  margin-left: 2%;
+  outline: none;
 }
 
 .task-content-textarea:focus {
@@ -104,6 +116,10 @@ body {
   outline: none;
 }
 
-.icons {
-  color: #ecbb01;
+#icon-disabled {
+  color: var(--selected-yellow);
+}
+
+#icon-selected {
+  color: white;
 }
