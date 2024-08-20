@@ -10,6 +10,7 @@ func RegisterRoutes(server *gin.Engine) {
 
 	server.POST("/tasks", createTasks)
 	server.DELETE("/tasks/:id", deleteTask)
+	server.PUT("/tasks/:id", updateTask)
 }
 
 

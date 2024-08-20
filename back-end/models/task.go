@@ -88,3 +88,22 @@ func (task Task) Delete() error {
 	_, err = stmt.Exec(task.ID)
 	return err
 }
+
+func (task Task) Update() error {
+	query := `
+	UPDATE events 
+	SET title = ?, content = ?
+	WHERE id = ?
+	`
+
+	stmt, err := db.DB.Prepare(query)
+
+	if err != nil {
+		return err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(task.Title, task.Content, task.ID)
+	return err
+}
