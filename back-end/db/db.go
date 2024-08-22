@@ -26,7 +26,7 @@ func createTables() {
     createTasksTable := `
 	CREATE TABLE IF NOT EXISTS tasks (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		title TEXT NOT NULL UNIQue,
+		title TEXT NOT NULL UNIQUE,
 		content TEXT NOT NULL
 	)
 	`
@@ -37,5 +37,25 @@ func createTables() {
     
 	if err != nil {
 		panic("could not create tasks table")
+	}
+}
+
+func CheckforEmptyTable() {
+	// Ensure that the table is not empty
+	checkEmptyTable := "SELECT COUNT(*) FROM tasks"
+	var count int
+	err := DB.QueryRow(checkEmptyTable).Scan(&count)
+
+	if err != nil {
+        panic("could not check tasks table count")
+    }
+
+	if count == 0 {
+		insertDefaultTask := "INSERT INTO tasks(title, content) VALUES (?, ?)"
+		_, err = DB.Exec(insertDefaultTask, "New Note", "This is your first note ")
+
+		if err != nil {
+			panic("could not insert default task")
+		}
 	}
 }

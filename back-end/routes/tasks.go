@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"example.com/back-end/db"
 	"example.com/back-end/models"
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,7 @@ func getTasks(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, tasks)
+	db.CheckforEmptyTable()
 }
 
 func createTasks(context *gin.Context) {
@@ -58,10 +60,11 @@ func deleteTask(context *gin.Context) {
 	}
   
 	context.JSON(http.StatusOK, gin.H{"message": "task deleted"})
+	db.CheckforEmptyTable()
   }
 
 
-  func updateTask(context *gin.Context) {
+    func updateTask(context *gin.Context) {
     taskID, err := strconv.ParseInt(context.Param("id"), 10, 64)
 
 	if err != nil {
