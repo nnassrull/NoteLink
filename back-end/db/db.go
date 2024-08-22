@@ -26,7 +26,7 @@ func createTables() {
     createTasksTable := `
 	CREATE TABLE IF NOT EXISTS tasks (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		title TEXT NOT NULL UNIQUE,
+		title TEXT NOT NULL,
 		content TEXT NOT NULL
 	)
 	`

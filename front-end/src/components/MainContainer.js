@@ -2,7 +2,7 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import TaskContent from "./TaskContent";
 
-const MainContainer = ({ tasks, error, loading, onDeleteTask }) => {
+const MainContainer = ({ tasks, setTasks, error, loading, onDeleteTask }) => {
   const [selectedTask, setSelectedTask] = useState(
     tasks && tasks.length > 0
       ? tasks[tasks.length - 1]
@@ -12,16 +12,17 @@ const MainContainer = ({ tasks, error, loading, onDeleteTask }) => {
         }
   ); // State to store the selected task content
 
-  // useEffect(() => {
-  //   if (tasks.length > 0) {
-  //     setSelectedTask(tasks[tasks.length - 1]);
-  //   } else {
-  //     setSelectedTask({
-  //       title: "First Note",
-  //       Content: "Create your first note by tapping on the create task button",
-  //     });
-  //   }
-  // }, [tasks]);
+  const updateTaskInList = (id, updatedTask) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.ID === id ? { ...task, ...updatedTask } : task
+      )
+    );
+
+    if (selectedTask.ID === id) {
+      setSelectedTask({ ...selectedTask, ...updatedTask });
+    }
+  };
 
   console.log(tasks);
 
@@ -39,8 +40,14 @@ const MainContainer = ({ tasks, error, loading, onDeleteTask }) => {
         tasks={tasks}
         onSelectedTask={handleSelected}
         onDeleteTask={onDeleteTask}
+        updateTaskInList={updateTaskInList}
       />
-      <TaskContent task={selectedTask} />
+      <TaskContent
+        task={selectedTask}
+        updateTaskInList={updateTaskInList}
+        tasks={tasks}
+        setTasks={setTasks}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const TaskContent = ({ task }) => {
+const TaskContent = ({ task, updateTaskInList, setTasks, tasks }) => {
   const [taskState, setTaskState] = useState({
     Title: task.Title,
     Content: task.Content,
@@ -19,6 +19,11 @@ const TaskContent = ({ task }) => {
       ...prevState,
       Title: e.target.value,
     }));
+
+    const updatedTasks = tasks.map((t) =>
+      t.ID === task.ID ? { ...t, Title: e.target.value } : t
+    );
+    setTasks(updatedTasks);
   };
 
   const handleContentChange = (e) => {
@@ -36,6 +41,9 @@ const TaskContent = ({ task }) => {
             headers: { "Content-Type": "application/json" },
           });
           console.log(response.data);
+
+          //Update task in the list
+          updateTaskInList(task.ID, taskState);
         } catch (err) {
           console.error("Error updating the task: ", err);
         }
@@ -45,7 +53,7 @@ const TaskContent = ({ task }) => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [taskState, task.ID]);
+  }, [taskState, task.ID, updateTaskInList]);
 
   return (
     <div className="task-content">

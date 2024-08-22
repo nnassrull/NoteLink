@@ -55,6 +55,7 @@ function App() {
         error={error}
         loading={loading}
         onDeleteTask={handleDeleteTask}
+        setTasks={setTasks}
       />
     </div>
   );
