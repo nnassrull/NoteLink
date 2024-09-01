@@ -12,6 +12,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Nunito", serif;
+  text-align: left;
 }
 
 body {
@@ -36,19 +37,41 @@ body {
 
 .get-all-tasks-btn {
   border: none;
-  font-size: 15px;
   padding: 0.4%;
+  padding: 5.8%;
   background-color: inherit;
-  color: var(--text-color);
-  transition: background-color 0.3s ease-in-out;
+  color: rgb(121, 121, 121);
+  transition: color 0.4s ease-in-out;
 }
 
 .get-all-tasks-btn:hover {
-  background-color: #c0c0c0;
-  border-radius: 2px;
-  font-size: 15px;
+  color: var(--selected-yellow);
+  cursor: pointer;
 }
 
+.success-icon-container {
+  color: white;
+  margin-top: 0.4%;
+}
+
+.navbar-icons {
+  display: flex;
+}
+
+.success-icon {
+  margin-top: 12px;
+  margin-bottom: -8px;
+  margin-right: 15px;
+  transform: translateY(-50%);
+  color: var(--selected-yellow);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 1.5em;
+}
+
+.success-icon.show {
+  opacity: 1;
+}
 .main {
   display: flex;
   justify-content: center;
@@ -67,6 +90,11 @@ body {
 .side-bar ul {
   list-style: none;
   text-align: left;
+}
+
+.side-bar ul li p {
+  text-align: left;
+  /* border: 0.2px solid red; */
 }
 
 #selected {
@@ -121,5 +149,17 @@ body {
 }
 
 #icon-selected {
+  color: white;
+}
+
+#note-disabled {
+  margin: 2%;
+  margin-right: 3.7%;
+  color: inherit;
+}
+
+#note-selected {
+  margin: 2%;
+  margin-right: 3.7%;
   color: white;
 }

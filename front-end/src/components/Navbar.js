@@ -1,4 +1,8 @@
-const Navbar = ({ onCreateTask }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+
+const Navbar = ({ onCreateTask, showSuccess }) => {
   const handleClick = () => {
     const newTask = {
       title: "New Note",
@@ -15,9 +19,20 @@ const Navbar = ({ onCreateTask }) => {
           Note
           <span style={{ color: "#ECBB01", fontSize: "larger" }}>Link</span>
         </span>
-        <button className="get-all-tasks-btn" onClick={handleClick}>
-          Create Task
-        </button>
+        <div className="navbar-icons">
+          <div className="success-icon-container">
+            <FontAwesomeIcon
+              icon={faCheckCircle}
+              className={`success-icon ${showSuccess ? "show" : ""}`}
+            />
+          </div>
+          <FontAwesomeIcon
+            icon={faCirclePlus}
+            className="get-all-tasks-btn"
+            onClick={handleClick}
+            style={{ fontSize: "larger" }}
+          ></FontAwesomeIcon>
+        </div>
       </nav>
     </>
   );

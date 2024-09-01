@@ -1,20 +1,23 @@
 package models
 
 import (
+	"fmt"
+
 	"example.com/back-end/db"
 )
 
 type Task struct {
-	ID int64
-	Title string
+	ID      int64
+	Title   string
 	Content string
+	UserID  int64
 }
 
 
 func (task *Task) Save() error {
-    query := `INSERT INTO tasks(title, content) 
-	VALUES (?, ?)`
-
+    query := `INSERT INTO tasks(title, content, user_id) 
+	VALUES (?, ?, ?)`
+    
 	stmt, err := db.DB.Prepare(query)
 
     if err != nil {
@@ -22,7 +25,9 @@ func (task *Task) Save() error {
 	}
 	defer stmt.Close()
 
-	res, err := stmt.Exec(task.Title, task.Content)
+	fmt.Println("User_id inserted : ", task.UserID)
+
+	res, err := stmt.Exec(task.Title, task.Content, task.UserID)
 
 	if err != nil {
 		return err
@@ -34,10 +39,10 @@ func (task *Task) Save() error {
 	return err
 }
 
-func GetallTasks() ([]Task, error) {
-	query := "SELECT * FROM tasks"
+func GetTasksByUserID(userID int64) ([]Task, error) {
+	query := "SELECT * FROM tasks WHERE user_id = ?"
 
-	rows, err := db.DB.Query(query)
+	rows, err := db.DB.Query(query, userID)
 
 	if err != nil {
 		return nil, err
@@ -50,7 +55,7 @@ func GetallTasks() ([]Task, error) {
 	for rows.Next() {
 		var task Task
 
-		err := rows.Scan(&task.ID, &task.Title, &task.Content)
+		err := rows.Scan(&task.ID, &task.Title, &task.Content, &task.UserID)
 
 		if err != nil {
 			return nil, err
@@ -67,7 +72,7 @@ func GetTaskByID(id int64) (*Task, error) {
 	row := db.DB.QueryRow(query, id)
 
 	var task Task 
-	err := row.Scan(&task.ID, &task.Title, &task.Content)
+	err := row.Scan(&task.ID, &task.Title, &task.Content, &task.UserID)
 	
 	if err != nil {
 		return nil, err
@@ -77,6 +82,7 @@ func GetTaskByID(id int64) (*Task, error) {
 }
 
 func (task Task) Delete() error {
+	fmt.Println("Delete task called")
     query := "DELETE FROM tasks WHERE id = ?"
 
 	stmt, err := db.DB.Prepare(query)

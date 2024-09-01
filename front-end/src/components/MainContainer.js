@@ -2,7 +2,14 @@ import { useState } from "react";
 import Sidebar from "./Sidebar";
 import TaskContent from "./TaskContent";
 
-const MainContainer = ({ tasks, setTasks, error, loading, onDeleteTask }) => {
+const MainContainer = ({
+  tasks,
+  setTasks,
+  error,
+  loading,
+  onDeleteTask,
+  onUpdateSuccess,
+}) => {
   const [selectedTask, setSelectedTask] = useState(
     tasks && tasks.length > 0
       ? tasks[tasks.length - 1]
@@ -47,6 +54,7 @@ const MainContainer = ({ tasks, setTasks, error, loading, onDeleteTask }) => {
         updateTaskInList={updateTaskInList}
         tasks={tasks}
         setTasks={setTasks}
+        onUpdateSuccess={onUpdateSuccess}
       />
     </div>
   );

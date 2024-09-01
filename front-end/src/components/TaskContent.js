@@ -1,7 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const TaskContent = ({ task, updateTaskInList, setTasks, tasks }) => {
+const TaskContent = ({
+  task,
+  updateTaskInList,
+  setTasks,
+  tasks,
+  onUpdateSuccess,
+}) => {
   const [taskState, setTaskState] = useState({
     Title: task.Title,
     Content: task.Content,
@@ -41,6 +47,7 @@ const TaskContent = ({ task, updateTaskInList, setTasks, tasks }) => {
             headers: { "Content-Type": "application/json" },
           });
           console.log(response.data);
+          onUpdateSuccess(); // Trigger the success icon
 
           //Update task in the list
           updateTaskInList(task.ID, taskState);
@@ -53,7 +60,7 @@ const TaskContent = ({ task, updateTaskInList, setTasks, tasks }) => {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [taskState, task.ID, updateTaskInList]);
+  }, [taskState, task.ID, updateTaskInList, onUpdateSuccess]);
 
   return (
     <div className="task-content">
@@ -61,11 +68,10 @@ const TaskContent = ({ task, updateTaskInList, setTasks, tasks }) => {
         className="task-title-textarea"
         value={taskState.Title}
         onChange={handleTitleChange}
-        rows={1}
         cols={2}
         style={{
           width: "98%",
-          height: "5vh",
+          // height: "5vh",
           border: "none",
           resize: "none",
           fontWeight: "bold",
