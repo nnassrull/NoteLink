@@ -12,6 +12,12 @@ const Navbar = ({ onCreateTask, showSuccess }) => {
     onCreateTask(newTask);
   };
 
+  const handleLogout = () => {
+    console.log("Logged out successfully");
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
+
   return (
     <>
       <nav className="nav-bar">
@@ -32,6 +38,7 @@ const Navbar = ({ onCreateTask, showSuccess }) => {
             onClick={handleClick}
             style={{ fontSize: "larger" }}
           ></FontAwesomeIcon>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </nav>
     </>

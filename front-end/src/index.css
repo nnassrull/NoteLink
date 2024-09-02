@@ -163,3 +163,96 @@ body {
   margin-right: 3.7%;
   color: white;
 }
+
+.login-page {
+  height: 96vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 50vw; /* Increased width to make the container wider */
+  max-width: 600px; /* Set a max width to limit the container's expansion */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5%;
+  padding: 7% 3.5%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+  margin-bottom: 3em;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+  transition: width 0.3s ease;
+}
+
+.input-label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #aaa;
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.input-container.focused .input-label,
+.input-container input:not(:placeholder-shown) + .input-label {
+  top: 22%;
+  left: 10px;
+  font-size: 12px;
+  color: #333;
+  margin: 6px 9px;
+}
+
+.input-container {
+  outline: none;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 15px 17px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid #ddd;
+  border-radius: 9px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  margin-top: 7px;
+}
+
+.input-container input:focus {
+  border-color: #0059ff;
+  outline: none;
+  box-shadow: none;
+}
+
+.arrow-button {
+  position: absolute;
+  right: 9px;
+  top: 46%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+.arrow-button:focus {
+  outline: none;
+}
