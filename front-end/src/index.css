@@ -172,7 +172,7 @@ body {
 }
 
 .login-container {
-  width: 50vw; /* Increased width to make the container wider */
+  width: 65vw; /* Increased width to make the container wider */
   max-width: 600px; /* Set a max width to limit the container's expansion */
   display: flex;
   justify-content: center;
@@ -183,17 +183,13 @@ body {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
 }
 
-.login-container h1 {
-  margin-bottom: 3em;
-}
-
 .login-form {
   width: 100%;
 }
 
 .input-container {
   position: relative;
-  margin: 20px 0;
+  /* margin: 20px 0; */
   width: 100%;
   transition: width 0.3s ease;
 }
@@ -255,4 +251,60 @@ body {
 
 .arrow-button:focus {
   outline: none;
+}
+
+.img-container {
+  height: 20vh;
+  width: 35vw;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-container {
+  /* border: 2px solid red; */
+  border: none;
+  margin-top: 20px;
+  /* background-color: var(--selected); */
+}
+
+.btn-container button {
+  float: right;
+  padding: 10px 20px;
+  margin: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #cccccc42;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.name-div {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
+.cancel-btn {
+  background: linear-gradient(to bottom, #f5f5f556, #e6e6e6);
+  color: #0056b3;
+}
+
+.signup-btn {
+  background: linear-gradient(to bottom, #007bff, #0056b3);
+  color: white;
+  border: 1px solid #0056b3;
+}
+
+.signup-btn:hover {
+  background: linear-gradient(to bottom, #0069d9, #004085);
+  border-color: #004085;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(to bottom, #e6e6e6, #dcdcdc);
+  border-color: #bbb;
 }

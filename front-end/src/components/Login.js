@@ -40,14 +40,15 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem("token");
-  //   window.location.href = "/login";
-  // };
-
   return (
     <section className="login-page">
       <div className="login-container">
+        <img
+          src={`${process.env.PUBLIC_URL}/icon.jpeg`}
+          alt="Icon"
+          className="img-container"
+        />
+
         <h1>Sign in with NoteLink ID</h1>
         <form onSubmit={handleSubmit} className="login-form">
           {step === "email" ? (
